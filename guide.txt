@@ -1,0 +1,287 @@
+# make sure pip is installed
+check with pip command
+# upgrade pip
+pip install --upgrade pip
+
+# to install django use
+pip install django
+
+# to check python package already install on your computer
+pip freeze
+
+# to start django app
+django-admin startproject newproject .
+
+# to run the app
+python manage.py runserver
+
+# to create app
+python manage.py startapp firstapp
+or
+django-admin startapp django_env
+
+# register newly created app to setting.py
+firstapp
+
+# to run migration
+python manage.py migrate
+# to migrate after adding app to settings
+python manage.py makemigrations app_name(optional)
+python manage.py migrate app_name(optional)
+
+# to crate super user
+python manage.py createsuperuser
+
+# creating virtual environment 
+pip install pipenv
+# to activate virtual environment
+pipenv shell
+# to install django
+pipenv install django
+# then we can make use of the django admin command to create django project
+# to keep the django secrete in virtual environment
+# locate the file in and place the key with, C:\Users\Tulbadex\.virtualenvs\env_var-nCfN8TLI\Scripts
+# locate the active.bat file
+set SECRET_KEY='django-insecure-^9m1-5r75k(7zlpr(p8j0el9d()0v@uywfk(&afwlze%u-u_%$'
+set DEBUG=True
+# or you can keep in .env file, i prefer this
+# add .env file where settings file is
+# declare your variable
+SECRET_KEY='django-insecure-^9m1-5r75k(7zlpr(p8j0el9d()0v@uywfk(&afwlze%u-u_%$'
+DEBUG=True
+# install environ
+pipenv install django-environ
+# add this to settings to settings file
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+# get pipenv location
+pipenv --venv
+
+# always make sure the environment is activated before running python command
+
+# create a template folder in the root folder and add the location to the template dictionary in setting.py
+
+
+# django rest framework
+pipenv install djangorestframework
+# add rest framework to app installed settings
+'rest_framework'
+# Request is made up of 4 things
+1. The endpoint(url)
+2. The method
+    . GET, . POST, . PUT/PATCH, . DELETE
+# headers are information you pass along in your request 
+# we have three type of views in djangorestframework
+    * Function base view
+    * Class base API view
+    * Generic view
+
+
+
+
+# python test module
+# django 3 comes with coverage that give us int on what to test
+coverage runn --source='authentication' manage.py test&& coverage report && coverage html
+
+https://github.com/tulbadex/zuriPythonClassAssignments/tree/main/django/env_var/Blog
+
+
+//run this first, then
+git pull origin master 
+git push origin master
+git push origin HEAD:main
+# for my zuri-blog
+git push origin HEAD:master
+
+# to check git branch
+git branch 
+
+pipenv freeze > requirements.txt
+pipenv install gunicorn
+pipenv install django-heroku
+git push heroku HEAD:master
+# for my zuri-blog
+git push heroku HEAD:main
+
+heroku run python manage.py migrate
+
+https://zuri-blogs.herokuapp.com/ | https://git.heroku.com/zuri-blogs.git
+
+
+
+# pip command error on pip command relating to header not set
+# WARNING: Value for scheme.headers does not match. Please report this to <https://github.com/pypa/pip/issues/9617>
+# upgrade pip
+python -m pip install pip==21.1
+
+
+
+
+# installing virtual env for python
+# from the desktop, use this command in terminal
+pip install virtualenv 
+create a folder where you want to create the virtual environment
+# inside the folder use this command
+virtualenv simple_name_of_project
+# to activate virtualen in project, on the project
+simple_name_of_project\Scripts\activate
+# always remember to activate your virtual environment before starting any project
+simple_virtual_project\Scripts\activate
+# install django
+pip install django
+django-admin startproject newproject .
+python manage.py startapp school
+python manage.py runserver
+
+
+# run model in django shell
+python manage.py shell
+# import model
+from school.models import School, Student
+school = School(name="", address="", postal_code="")
+school.save()
+
+student = School(School=school, first_name="", last_name="", age=)
+student.save()
+
+# check all record
+students = Student.objects.all()
+students
+# get single item
+student_1 = Student.objects.get(id=1)
+student_1 = Student.objects.get(pk=1)
+student_1.first_name
+
+# create using create method
+Student.objects.create(School=school, first_name="Aminat", last_name="Adedayo", age=19) 
+# filter data base on argument
+student_age_filter = Student.objects.filter(age=20) 
+Student.objects.filter(pk=4)
+# get return single result
+# while filter return multiple results
+students = Student.objects.filter(first_name__icontains = "Ib")
+students = Student.objects.filter(last_name__icontains = "Ade")
+
+# updata data
+student_4 = Student.objects.get(pk=4)
+student_4
+student_4.first_name
+student_2 = Student.objects.get(id=3)
+student_2.first_name
+school_1 = School.objects.get(id=1)
+school_1.name
+school_1.name = "Epetedo High School"
+school_1.save()
+# cehing foreign key
+student_2 = Student.objects.get(id=2)
+student_2.School.name
+#update foreign key
+school_1 = School.objects.get(id=1)
+school_1.name
+school_1.name = "Epetedo High School"
+student_2.School = school_1
+student_2.save()
+
+# Delete data
+school_1 = School.objects.get(id=1)
+school_1.delete()
+student_2 = Student.objects.get(id=2)
+student_2.delete()
+# deleting foreign key is different
+# it delete the student as well because it was set to that initially
+school_name = School.objects.get(name="")
+school_name.delete()
+
+
+
+
+
+
+
+
+
+# How to deploy python project to heroku
+
+Let get started 
+Firstly, make sure your project is working on your local machine.
+
+Go to your settings.py file and make sure DEBUG=False
+Create a file name Procfile with no extention, make sure its created at the project root level
+make sure its not in any app folder or project folder
+
+Copy and paste this into the Procfile
+web:gunicorn config.wsgi --log-file -
+In my case, config is the name of the folder where my seetings.py is located, name it according to your projectname
+save and close
+
+Create a file called runtime.txt
+Get the version of python you running on your system with this command
+python --version
+as for me, mine was 3.9.2. write the below version into runtime.tx and save
+python-3.9.2
+
+Create a file and name it requirements.txt at the folder root level
+Open your terminal and make sure you are at the root folder level and type 
+pip freeze > requirements.txt
+This command will collect all packages you running on your django project and save it in requirements.txt
+
+Make sure you already have an account on heroku or create one 
+On your terminal type, 
+heroku login -i 
+Then press enter
+enter your email follow by your password and press enter
+
+Now, we need to install gunicorn by typing the below command to the terminal
+pip install gunicorn
+Install django heroku with the below command
+pip install django-heroku
+After installation is completely done. Open your settings.py file 
+Add this at the top
+import django_heroku
+Add this at the bottom of the settings.py file
+django_heroku.settings(locals())
+Note: If the django_heroku.settings is not placed on the last line of the settings file, you will enconter error.
+
+Let create our heroku application.
+Type in the below command to create the app on your terminal.
+heroku create app_name
+Example: app_name can be blog-zuri, heroku create blog-zuri
+Then copy and paste the below command on the terminal
+heroku git:remote -a your_heroku_app_name
+Which wiil be as below for my app
+heroku git:remote -a zuri-blog
+
+Let add this app to git
+Initialise git with below command
+git init
+Add the project to git
+git add .
+Let commit to git
+git commit -m "I just commit my first repo"
+
+Let push to our git remote
+git push heroku master
+If you encounter any erro then use the command below
+git push heroku head:master
+
+Finally, run the below command
+heroku run python manage.py migrate
+
+In case you encounter any error
+Type the below command
+pipenv install
+pipenv install django-heroku
+git add .
+git commit -m "Commit message"
+heroku config:set DISABLE_COLLCTSTATIC=1
+git push heroku HEAD:master
+
+
+make sure all this are present in your settings.py file
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+ALLOWED_HOSTS = ['*']
+STATICFILES_DIRS = [BASE_DIR.joinpath('static')]
+
+Note: Git must be install on your system to access git command
